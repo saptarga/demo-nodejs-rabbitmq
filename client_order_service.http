@@ -1,0 +1,25 @@
+# Register Order
+POST /api/orders HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+Content-Length: 144
+
+{
+    "items" : [
+        {
+            "name": "burger",
+            "quantity": 1
+        },
+        {
+            "name": "coke",
+            "quantity": 5
+        }
+    ],
+    "email": "saptarga@gmail.com"
+}
+
+###
+
+# Get Status Order
+GET /api/orders/6112e91e07c2366aa4e8648b HTTP/1.1
+Host: localhost:3000
