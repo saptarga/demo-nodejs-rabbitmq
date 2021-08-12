@@ -2,7 +2,7 @@ const amqp = require("amqplib");
 const { logger } = require("./loggerService");
 const MQ_HOST = process.env.MQ_HOST || "localhost"; // create MQ connection string using environment variable
 const MQ_URL = `amqp://${MQ_HOST}:5672`;
-const EXCHANGE = "demo_order";
+const { EXCHANGE, QUEUE } = require("../statval/constants");
 let orderChannel = null;
 
 /**
@@ -16,6 +16,10 @@ const amqpConnect = async () => {
 		await orderChannel.assertExchange(EXCHANGE, "fanout", {
 			durable: false,
 		});
+
+		// Ensure that the queue exists or create one if it doesn't
+		await orderChannel.assertQueue(QUEUE);
+		await orderChannel.bindQueue(QUEUE, EXCHANGE, "");
 
 		logger.info(`AMQP - connection established at ${MQ_URL}`);
 	} catch (ex) {

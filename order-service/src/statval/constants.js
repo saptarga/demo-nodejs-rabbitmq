@@ -1,3 +1,6 @@
+const EXCHANGE = "demo_order";
+const QUEUE = "demo_order.process";
+
 const ITEM_PRICE = {
 	burger: 50.0,
 	fries: 20.0,
@@ -18,4 +21,6 @@ module.exports = {
 	MORGAN_CONFIG: MORGAN_CONFIG,
 	ORDER_SERVICE_WELCOME_MSG: ORDER_SERVICE_WELCOME_MSG,
 	ERROR_MAPPING: ERROR_MAPPING,
+	EXCHANGE: EXCHANGE,
+	QUEUE: QUEUE,
 };
